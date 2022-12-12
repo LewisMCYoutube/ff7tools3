@@ -11,7 +11,7 @@
 import struct
 
 import ff7
-import ff7text
+from . import ff7text
 
 
 # Kernel archive file, stores data in GZIP format
@@ -73,7 +73,7 @@ class Archive:
             if f.dirID == dirID and f.index == index:
                 return f
 
-        raise IndexError, "No file with directory ID %d, index %d in archive '%s'" % (dirID, index, self.name)
+        raise IndexError("No file with directory ID %d, index %d in archive '%s'" % (dirID, index, self.name))
 
     # Return the list of all files in the archive.
     def getFiles(self):
@@ -85,7 +85,7 @@ class Archive:
 
     # Add a file, possibly replacing a file with the same directory ID and index.
     def addFile(self, f):
-        for i in xrange(len(self.fileList)):
+        for i in range(len(self.fileList)):
             if self.fileList[i].dirID == f.dirID and self.fileList[i].index == f.index:
                 self.fileList[i] = f
                 return
@@ -122,7 +122,7 @@ class StringList:
 
         # Parse the offset table
         offsets = []
-        for i in xrange(numStrings):
+        for i in range(numStrings):
             offsets.append(struct.unpack_from("<H", data, i*2)[0])
 
         # Extract the strings
@@ -165,7 +165,7 @@ class StringList:
 
                 # Kernel variable code, copy two argument bytes verbatim
                 if i >= endOffset - 1:
-                    raise IndexError, "Premature end of kernel string in variable reference"
+                    raise IndexError("Premature end of kernel string in variable reference")
 
                 s += c
                 s += data[i:i+2]
@@ -245,7 +245,7 @@ class StringList:
 
                         # Look for 10/8/6/4-byte substring in last 64 bytes of data
                         found = False
-                        for refLength in xrange(10, 2, -2):
+                        for refLength in range(10, 2, -2):
                             searchFor = rawString[i:i + refLength]
                             if len(searchFor) < refLength:
                                 continue

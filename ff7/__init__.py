@@ -17,18 +17,18 @@ import re
 import gzip
 import zlib
 import struct
-import StringIO
+import io
 
-import lzss
-import binlz
-import ff7text
-import kernel
-import field
-import tutorial
-import scene
-import world
-import data
-import cd
+from . import lzss
+from . import binlz
+from . import ff7text
+from . import kernel
+from . import field
+from . import tutorial
+from . import scene
+from . import world
+from . import data
+from . import cd
 
 
 def _enum(**enums):
@@ -59,7 +59,7 @@ def _retrieveFileFromImage(image, subDir, fileName):
 
     data = image.readFile(filePath)
 
-    f = StringIO.StringIO(data)
+    f = io.StringIO(data)
     f.name = filePath  # kernel.Archive needs this
     return f
 
@@ -113,7 +113,7 @@ def checkDisc(discPath):
             break
 
     if f is None:
-        raise EnvironmentError, "Cannot find DISKINFO.CNF file (not a Final Fantasy VII image?)"
+        raise EnvironmentError("Cannot find DISKINFO.CNF file (not a Final Fantasy VII image?)")
 
     discId = f.read(8)
 
@@ -124,7 +124,7 @@ def checkDisc(discPath):
     elif discId == "DISK0003":
         discNumber = 3
     else:
-        raise EnvironmentError, "Unknown disc ID '%s' in DISKINFO.CNF" % discId
+        raise EnvironmentError("Unknown disc ID '%s' in DISKINFO.CNF" % discId)
 
     # Find the name of the executable
     f = retrieveFile(discPath, "", "SYSTEM.CNF")
@@ -132,7 +132,7 @@ def checkDisc(discPath):
 
     m = re.match(r"BOOT = cdrom:\\([\w.]+);1", line)
     if not m:
-        raise EnvironmentError, "Unrecognized line '%s' in SYSTEM.CNF" % line
+        raise EnvironmentError("Unrecognized line '%s' in SYSTEM.CNF" % line)
 
     execFileName = m.group(1)
 
@@ -151,21 +151,21 @@ def checkDisc(discPath):
     elif execFileName in ["SLPS_007.00", "SLPS_007.01", "SLPS_007.02"]:
         version = Version.JO
     else:
-        raise EnvironmentError, "Unrecognized game version"
+        raise EnvironmentError("Unrecognized game version")
 
     return (version, discNumber, execFileName)
 
 
 # Decompress an 8-bit string from GZIP format.
 def decompressGzip(data):
-    buffer = StringIO.StringIO(data)
+    buffer = io.StringIO(data)
     zipper = gzip.GzipFile(fileobj = buffer, mode = "rb")
     return zipper.read()
 
 
 # Compress an 8-bit string to GZIP format.
 def compressGzip(data):
-    buffer = StringIO.StringIO()
+    buffer = io.StringIO()
     zipper = zlib.compressobj(zlib.Z_BEST_COMPRESSION, zlib.DEFLATED, -zlib.MAX_WBITS, 6, 0)  # memlevel = 6 seems to produce smaller output
 
     buffer.write("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x00")

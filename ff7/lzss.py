@@ -22,29 +22,30 @@ MIN_REF_LEN = 3   # minimum reference length
 # Decompress an 8-bit string from LZSS format.
 def decompress(data):
 
+    data = bytes(data)
     # Input offset and input size
     i = 0
     dataSize = len(data)
 
     # Output offset and output data
     j = 0
-    output = ""
+    output = b""
 
     while i < dataSize:
 
         # Read next flags byte
-        flags = ord(data[i])
+        flags = data[i]
         i += 1
 
         # Process 8 literals or references
-        for bit in xrange(8):
+        for bit in range(8):
             if i >= dataSize:
                 break
 
             if flags & (1 << bit):
 
                 # Copy literal value
-                output += data[i]
+                output += data[i:i+1]
                 i += 1
                 j += 1
 
@@ -53,16 +54,16 @@ def decompress(data):
                 # Resolve dictionary reference
                 # (strange encoding: lower 8 bits of offset in first byte,
                 # upper 4 bits of offset in upper 4 bits of second byte)
-                offset = ord(data[i]) | ((ord(data[i+1]) & 0xf0) << 4)
-                length = (ord(data[i+1]) & 0x0f) + MIN_REF_LEN
+                offset = data[i] | ((data[i+1] & 0xf0) << 4)
+                length = (data[i+1] & 0x0f) + MIN_REF_LEN
                 i += 2
 
                 ref = j - ((j + 0xfee - offset) & 0xfff)
                 while length > 0:
                     if ref < 0:  # references before start of output resolve to 0 bytes
-                        output += '\0'
+                        output += b'\0'
                     else:
-                        output += output[ref]
+                        output += output[ref:ref+1]
 
                     j += 1
                     ref += 1
@@ -79,13 +80,13 @@ class Dictionary:
 
         # For each reference length there is one dictionary mapping substrings
         # to dictionary offsets.
-        self.d = [{} for i in xrange(0, MAX_REF_LEN + 1)]
+        self.d = [{} for i in range(0, MAX_REF_LEN + 1)]
         self.ptr = 0
 
         # For each reference length there is also a reverse dictionary
         # mapping dictionary offsets to substrings. This makes removing
         # dictionary entries more efficient.
-        self.r = [{} for i in xrange(0, MAX_REF_LEN + 1)]
+        self.r = [{} for i in range(0, MAX_REF_LEN + 1)]
 
     # Add all initial substrings of a string to the dictionary.
     def add(self, s):
@@ -96,7 +97,7 @@ class Dictionary:
         offset = self.ptr
 
         # Generate all substrings
-        for length in xrange(MIN_REF_LEN, maxLength + 1):
+        for length in range(MIN_REF_LEN, maxLength + 1):
             substr = s[:length]
 
             # Remove obsolete mapping, if present
@@ -127,7 +128,7 @@ class Dictionary:
         if maxLength > len(s):
             maxLength = len(s)
 
-        for length in xrange(maxLength, MIN_REF_LEN - 1, -1):
+        for length in range(maxLength, MIN_REF_LEN - 1, -1):
             substr = s[:length]
 
             try:
@@ -146,11 +147,11 @@ def compress(data):
 
     # Prime the dictionary
     dictionary.ptr = WSIZE - 2*MAX_REF_LEN
-    for i in xrange(MAX_REF_LEN):
-        dictionary.add('\0' * (MAX_REF_LEN - i) + data[:i])
+    for i in range(MAX_REF_LEN):
+        dictionary.add(b'\0' * (MAX_REF_LEN - i) + data[:i])
 
     # Output data
-    output = ""
+    output = b""
 
     i = 0
     dataSize = len(data)
@@ -158,11 +159,11 @@ def compress(data):
     while i < dataSize:
 
         # Accumulated output chunk
-        accum = ""
+        accum = b""
 
         # Process 8 literals or references at a time
         flags = 0
-        for bit in xrange(8):
+        for bit in range(8):
             if i >= dataSize:
                 break
 
@@ -175,7 +176,7 @@ def compress(data):
                 accum += chr(offset & 0xff) + chr(((offset >> 4) & 0xf0) | (length - MIN_REF_LEN))
 
                 # Update dictionary
-                for j in xrange(length):
+                for j in range(length):
                     dictionary.add(data[i + j:i + j + MAX_REF_LEN])
 
                 i += length

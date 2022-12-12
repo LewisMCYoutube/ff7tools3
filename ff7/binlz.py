@@ -49,13 +49,13 @@ class Archive:
         numFiles = firstOffset / 4
 
         offsets = [firstOffset]
-        for fileNum in xrange(numFiles - 1):
+        for fileNum in range(numFiles - 1):
             offsets.append(struct.unpack("<L", fileobj.read(4))[0])
 
         offsets.append(fileobj.tell())  # dummy offset to determine size of last file
 
         # Extract all files
-        for fileNum in xrange(numFiles):
+        for fileNum in range(numFiles):
             cmpDataSize = offsets[fileNum + 1] - offsets[fileNum]
             self.fileList.append(ArchiveFile(fileNum, fileobj.read(cmpDataSize)))
 

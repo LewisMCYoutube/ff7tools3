@@ -18,103 +18,103 @@ import struct
 # This is almost identical to the MacOS Roman encoding shifted down
 # by 32 positions.
 normalChars = (
-    u" !\"#$%&'()*+,-./01234"
-    u"56789:;<=>?@ABCDEFGHI"
-    u"JKLMNOPQRSTUVWXYZ[\\]^"
-    u"_`abcdefghijklmnopqrs"
-    u"tuvwxyz{|}~ ÄÅÇÉÑÖÜáà"
-    u"âäãåçéèêëíìîïñóòôöõúù"
-    u"ûü♥°¢£↔→♪ßα  ´¨≠ÆØ∞±≤"  # '♥' (0x80), '↔' (0x84), '→' (0x85), '♪' (0x86), and 'α' (0x88) are additions
-    u"≥¥µ∂ΣΠπ⌡ªºΩæø¿¡¬√ƒ≈∆«"
-    u"»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄ ‹"
-    u"›ﬁﬂ■‧‚„‰ÂÊÁËÈÍÎÏÌÓÔ Ò"
-    u"ÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ       "
+    " !\"#$%&'()*+,-./01234"
+    "56789:;<=>?@ABCDEFGHI"
+    "JKLMNOPQRSTUVWXYZ[\\]^"
+    "_`abcdefghijklmnopqrs"
+    "tuvwxyz{|}~ ÄÅÇÉÑÖÜáà"
+    "âäãåçéèêëíìîïñóòôöõúù"
+    "ûü♥°¢£↔→♪ßα  ´¨≠ÆØ∞±≤"  # '♥' (0x80), '↔' (0x84), '→' (0x85), '♪' (0x86), and 'α' (0x88) are additions
+    "≥¥µ∂ΣΠπ⌡ªºΩæø¿¡¬√ƒ≈∆«"
+    "»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄ ‹"
+    "›ﬁﬂ■‧‚„‰ÂÊÁËÈÍÎÏÌÓÔ Ò"
+    "ÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ       "
 )
 
 # Japanese font texture 1, CLUT 0, upper half
 normalCharsJP = (
-    u"バばビびブぶベべボぼガがギぎグぐゲげゴごザ"
-    u"ざジじズずゼぜゾぞダだヂぢヅづデでドどヴパ"
-    u"ぱピぴプぷペぺポぽ0123456789、。"
-    u" ハはヒひフふヘへホほカかキきクくケけコこ"
-    u"サさシしスすセせソそタたチちツつテてトとウ"
-    u"うアあイいエえオおナなニにヌぬネねノのマま"
-    u"ミみムむメめモもラらリりルるレれロろヤやユ"
-    u"ゆヨよワわンんヲをッっャゃュゅョょァぁィぃ"
-    u"ゥぅェぇォぉ!?『』．+ABCDEFGHI"
-    u"JKLMNOPQRSTUVWXYZ・*ー〜"
-    u"…%/:&【】♥→αβ「」()-=   ⑬"
+    "バばビびブぶベべボぼガがギぎグぐゲげゴごザ"
+    "ざジじズずゼぜゾぞダだヂぢヅづデでドどヴパ"
+    "ぱピぴプぷペぺポぽ0123456789、。"
+    " ハはヒひフふヘへホほカかキきクくケけコこ"
+    "サさシしスすセせソそタたチちツつテてトとウ"
+    "うアあイいエえオおナなニにヌぬネねノのマま"
+    "ミみムむメめモもラらリりルるレれロろヤやユ"
+    "ゆヨよワわンんヲをッっャゃュゅョょァぁィぃ"
+    "ゥぅェぇォぉ!?『』．+ABCDEFGHI"
+    "JKLMNOPQRSTUVWXYZ・*ー〜"
+    "…%/:&【】♥→αβ「」()-=   ⑬"
 )
 
 # Japanese font texture 1, CLUT 0, lower half
 kanjiSet1 = (
-    u"必殺技地獄火炎裁雷大怒斬鉄剣槍海衝聖審判転"
-    u"生改暗黒釜天崩壊零式自爆使放射臭息死宣告凶"
-    u"破晄撃画龍晴点睛超究武神覇癒風邪気封印吹烙"
-    u"星守護命鼓動福音掌打水面蹴乱闘合体疾迅明鏡"
-    u"止抜山蓋世血祭鎧袖一触者滅森羅万象装備器攻"
-    u"魔法召喚獣呼出持相手物確率弱投付与変化片方"
-    u"行決定分直前真似覚列後位置防御発回連続敵全"
-    u"即効果尾毒消金針乙女興奮剤鎮静能薬英雄榴弾"
-    u"右腕砂時計糸戦惑草牙南極冷結晶電鳥角有害質"
-    u"爪光月反巨目砲重力球空双野菜実兵単毛茶色髪"
+    "必殺技地獄火炎裁雷大怒斬鉄剣槍海衝聖審判転"
+    "生改暗黒釜天崩壊零式自爆使放射臭息死宣告凶"
+    "破晄撃画龍晴点睛超究武神覇癒風邪気封印吹烙"
+    "星守護命鼓動福音掌打水面蹴乱闘合体疾迅明鏡"
+    "止抜山蓋世血祭鎧袖一触者滅森羅万象装備器攻"
+    "魔法召喚獣呼出持相手物確率弱投付与変化片方"
+    "行決定分直前真似覚列後位置防御発回連続敵全"
+    "即効果尾毒消金針乙女興奮剤鎮静能薬英雄榴弾"
+    "右腕砂時計糸戦惑草牙南極冷結晶電鳥角有害質"
+    "爪光月反巨目砲重力球空双野菜実兵単毛茶色髪"
 )
 
 # Japanese font texture 1, CLUT 1, upper half
 kanjiSet2 = (
-    u"安香花会員蜂蜜館下着入先不子供屋商品景交換"
-    u"階模型部離場所仲間無制限殿様秘氷河図何材料"
-    u"雪上進事古代種鍵娘紙町住奥眠楽最初村雨釘陸"
-    u"吉揮叢雲軍異常通威父蛇矛青偃刀戟十字裏車円"
-    u"輪卍折鶴倶戴螺貝突銀玉正宗具甲烈属性吸収半"
-    u"減土高級状態縁闇睡石徐々的指混呪開始歩復盗"
-    u"小治理同速遅逃去視複味沈黙還倍数瀕取返人今"
-    u"差誰当拡散飛以外暴避振身中旋津波育機械擲炉"
-    u"新両本君洞内作警特殊板強穴隊族亡霊鎖足刃頭"
-    u"怪奇虫跳侍左首潜長親衛塔宝条像忍謎般見報充"
-    u"填完了銃元経験値終獲得名悲蛙操成費背切替割"
+    "安香花会員蜂蜜館下着入先不子供屋商品景交換"
+    "階模型部離場所仲間無制限殿様秘氷河図何材料"
+    "雪上進事古代種鍵娘紙町住奥眠楽最初村雨釘陸"
+    "吉揮叢雲軍異常通威父蛇矛青偃刀戟十字裏車円"
+    "輪卍折鶴倶戴螺貝突銀玉正宗具甲烈属性吸収半"
+    "減土高級状態縁闇睡石徐々的指混呪開始歩復盗"
+    "小治理同速遅逃去視複味沈黙還倍数瀕取返人今"
+    "差誰当拡散飛以外暴避振身中旋津波育機械擲炉"
+    "新両本君洞内作警特殊板強穴隊族亡霊鎖足刃頭"
+    "怪奇虫跳侍左首潜長親衛塔宝条像忍謎般見報充"
+    "填完了銃元経験値終獲得名悲蛙操成費背切替割"
 )
 
 # Japanese font texture 1, CLUT 1, lower half
 kanjiSet3 = (
-    u"由閉記憶選番街底忘都過艇路運搬船基心港末宿"
-    u"西道艦家乗竜巻迷宮絶壁支社久件想秒予多落受"
-    u"組余系標起迫日勝形引現解除磁互口廃棄汚染液"
-    u"活令副隠主斉登温泉百段熱走急降奪響嵐移危戻"
-    u"遠吠軟骨言葉震叫噴舞狩粉失敗眼激盤逆鱗踏喰"
-    u"盾叩食凍退木吐線魅押潰曲翼教皇太陽界案挑援"
-    u"赤往殴意東北参知聞来仕別集信用思毎悪枯考然"
-    u"張好伍早各独配腐話帰永救感故売浮市加流約宇"
-    u"礼束母男年待宙立残俺少精士私険関倒休我許郷"
-    u"助要問係旧固荒稼良議導夢追説声任柱満未顔旅"
+    "由閉記憶選番街底忘都過艇路運搬船基心港末宿"
+    "西道艦家乗竜巻迷宮絶壁支社久件想秒予多落受"
+    "組余系標起迫日勝形引現解除磁互口廃棄汚染液"
+    "活令副隠主斉登温泉百段熱走急降奪響嵐移危戻"
+    "遠吠軟骨言葉震叫噴舞狩粉失敗眼激盤逆鱗踏喰"
+    "盾叩食凍退木吐線魅押潰曲翼教皇太陽界案挑援"
+    "赤往殴意東北参知聞来仕別集信用思毎悪枯考然"
+    "張好伍早各独配腐話帰永救感故売浮市加流約宇"
+    "礼束母男年待宙立残俺少精士私険関倒休我許郷"
+    "助要問係旧固荒稼良議導夢追説声任柱満未顔旅"
 )
 
 # Japanese font texture 2, CLUT 0
 kanjiSet4 = (
-    u"友伝夜探対調民読占頼若学識業歳争苦織困答準"
-    u"恐認客務居他再幸役縮情豊夫近窟責建求迎貸期"
-    u"工算湿難保帯届凝笑向可遊襲申次国素題普密望"
-    u"官泣創術演輝買途浴老幼利門格原管牧炭彼房驚"
-    u"禁注整衆語証深層査渡号科欲店括坑酬緊研権書"
-    u"暇兄派造広川賛駅絡在党岸服捜姉敷胸刑谷痛岩"
-    u"至勢畑姿統略抹展示修酸製歓接障災室索扉傷録"
-    u"優基讐勇司境璧医怖狙協犯資設雇根億脱富躍純"
-    u"写病依到練順園総念維検朽圧補公働因朝浪祝恋"
-    u"郎勉春功耳恵緑美辺昇悩泊低酒影競二矢瞬希志"
+    "友伝夜探対調民読占頼若学識業歳争苦織困答準"
+    "恐認客務居他再幸役縮情豊夫近窟責建求迎貸期"
+    "工算湿難保帯届凝笑向可遊襲申次国素題普密望"
+    "官泣創術演輝買途浴老幼利門格原管牧炭彼房驚"
+    "禁注整衆語証深層査渡号科欲店括坑酬緊研権書"
+    "暇兄派造広川賛駅絡在党岸服捜姉敷胸刑谷痛岩"
+    "至勢畑姿統略抹展示修酸製歓接障災室索扉傷録"
+    "優基讐勇司境璧医怖狙協犯資設雇根億脱富躍純"
+    "写病依到練順園総念維検朽圧補公働因朝浪祝恋"
+    "郎勉春功耳恵緑美辺昇悩泊低酒影競二矢瞬希志"
 )
 
 # Japanese font texture 2, CLUT 1
 kanjiSet5 = (
-    u"孫継団給抗違提断島栄油就僕存企比浸非応細承"
-    u"編排努締談趣埋営文夏個益損額区寒簡遣例肉博"
-    u"幻量昔臓負討悔膨飲妄越憎増枚皆愚療庫涙照冗"
-    u"壇坂訳抱薄義騒奴丈捕被概招劣較析繁殖耐論貴"
-    u"称千歴史募容噂壱胞鳴表雑職妹氏踊停罪甘健焼"
-    u"払侵頃愛便田舎孤晩清際領評課勤謝才偉誤価欠"
-    u"寄忙従五送周頑労植施販台度嫌諸習緒誘仮借輩"
-    u"席戒弟珍酔試騎霜鉱裕票券専祖惰偶怠罰熟牲燃"
-    u"犠快劇拠厄抵適程繰腹橋白処匹杯暑坊週秀看軽"
-    u"棊和平王姫庭観航横帳丘亭財律布規謀積刻陥類"
+    "孫継団給抗違提断島栄油就僕存企比浸非応細承"
+    "編排努締談趣埋営文夏個益損額区寒簡遣例肉博"
+    "幻量昔臓負討悔膨飲妄越憎増枚皆愚療庫涙照冗"
+    "壇坂訳抱薄義騒奴丈捕被概招劣較析繁殖耐論貴"
+    "称千歴史募容噂壱胞鳴表雑職妹氏踊停罪甘健焼"
+    "払侵頃愛便田舎孤晩清際領評課勤謝才偉誤価欠"
+    "寄忙従五送周頑労植施販台度嫌諸習緒誘仮借輩"
+    "席戒弟珍酔試騎霜鉱裕票券専祖惰偶怠罰熟牲燃"
+    "犠快劇拠厄抵適程繰腹橋白処匹杯暑坊週秀看軽"
+    "棊和平王姫庭観航横帳丘亭財律布規謀積刻陥類"
 )
 
 def decodeKanji(bank, code):
@@ -129,46 +129,46 @@ def decodeKanji(bank, code):
     elif bank == '\xfe':
         return kanjiSet5[code]
 
-    raise IndexError, "Invalid kanji bank %02x" % bank
+    raise IndexError("Invalid kanji bank %02x" % bank)
 
 
 # Special characters of the field module (0xe0..0xff)
 fieldSpecialChars = {
 
     # Not in Japanese version, where 0xe0..0xe6 are regular characters:
-    '\xe0': u"{CHOICE}",    # choice tab (10 spaces)
-    '\xe1': u"\t",          # tab (4 spaces)
-    '\xe2': u", ",          # shortcut
-    '\xe3': u'."',          # not very useful shortcut with the wrong quote character...
-    '\xe4': u'…"',          # not very useful shortcut with the wrong quote character...
+    '\xe0': "{CHOICE}",    # choice tab (10 spaces)
+    '\xe1': "\t",          # tab (4 spaces)
+    '\xe2': ", ",          # shortcut
+    '\xe3': '."',          # not very useful shortcut with the wrong quote character...
+    '\xe4': '…"',          # not very useful shortcut with the wrong quote character...
 
     # In all versions
-    '\xe6': u"⑬",           # appears in the US version of BLACKBG6, presumably a mistake
-    '\xe7': u"\n",          # new line
-    '\xe8': u"{NEW}",       # new page
+    '\xe6': "⑬",           # appears in the US version of BLACKBG6, presumably a mistake
+    '\xe7': "\n",          # new line
+    '\xe8': "{NEW}",       # new page
 
-    '\xea': u"{CLOUD}",
-    '\xeb': u"{BARRET}",
-    '\xec': u"{TIFA}",
-    '\xed': u"{AERITH}",
-    '\xee': u"{RED XIII}",
-    '\xef': u"{YUFFIE}",
-    '\xf0': u"{CAIT SITH}",
-    '\xf1': u"{VINCENT}",
-    '\xf2': u"{CID}",
-    '\xf3': u"{PARTY #1}",
-    '\xf4': u"{PARTY #2}",
-    '\xf5': u"{PARTY #3}",
+    '\xea': "{CLOUD}",
+    '\xeb': "{BARRET}",
+    '\xec': "{TIFA}",
+    '\xed': "{AERITH}",
+    '\xee': "{RED XIII}",
+    '\xef': "{YUFFIE}",
+    '\xf0': "{CAIT SITH}",
+    '\xf1': "{VINCENT}",
+    '\xf2': "{CID}",
+    '\xf3': "{PARTY #1}",
+    '\xf4': "{PARTY #2}",
+    '\xf5': "{PARTY #3}",
 
-    '\xf6': u"〇",          # controller button
-    '\xf7': u"△",           # controller button
-    '\xf8': u"☐",           # controller button
-    '\xf9': u"✕",           # controller button
+    '\xf6': "〇",          # controller button
+    '\xf7': "△",           # controller button
+    '\xf8': "☐",           # controller button
+    '\xf9': "✕",           # controller button
 
-    '\xfa': u"",            # kanji 1
-    '\xfb': u"",            # kanji 2
-    '\xfc': u"",            # kanji 3
-    '\xfd': u"",            # kanji 4
+    '\xfa': "",            # kanji 1
+    '\xfb': "",            # kanji 2
+    '\xfc': "",            # kanji 3
+    '\xfd': "",            # kanji 4
 
     # '\xfe'                # extended control code, see below
     # '\xff'                # end of string
@@ -176,33 +176,33 @@ fieldSpecialChars = {
 
 # Extended control codes of the field module (0xfe ..)
 fieldControlCodes = {
-    '\xd2': u"{GRAY}",
-    '\xd3': u"{BLUE}",
-    '\xd4': u"{RED}",
-    '\xd5': u"{PURPLE}",
-    '\xd6': u"{GREEN}",
-    '\xd7': u"{CYAN}",
-    '\xd8': u"{YELLOW}",
-    '\xd9': u"{WHITE}",
-    '\xda': u"{FLASH}",
-    '\xdb': u"{RAINBOW}",
+    '\xd2': "{GRAY}",
+    '\xd3': "{BLUE}",
+    '\xd4': "{RED}",
+    '\xd5': "{PURPLE}",
+    '\xd6': "{GREEN}",
+    '\xd7': "{CYAN}",
+    '\xd8': "{YELLOW}",
+    '\xd9': "{WHITE}",
+    '\xda': "{FLASH}",
+    '\xdb': "{RAINBOW}",
 
-    '\xdc': u"{PAUSE}",   # pause until OK button is pressed
+    '\xdc': "{PAUSE}",   # pause until OK button is pressed
     # '\xdd'              # wait # of frames
-    '\xde': u"{NUM}",     # decimal variable
-    '\xdf': u"{HEX}",     # hex variable
-    '\xe0': u"{SCROLL}",  # wait for OK butten, then scroll window
-    '\xe1': u"{RNUM}",    # decimal variable, right-aligned
+    '\xde': "{NUM}",     # decimal variable
+    '\xdf': "{HEX}",     # hex variable
+    '\xe0': "{SCROLL}",  # wait for OK butten, then scroll window
+    '\xe1': "{RNUM}",    # decimal variable, right-aligned
     # '\xe2'              # value from game state memory
-    '\xe9': u"{FIXED}",   # fixed-width character spacing on/off
+    '\xe9': "{FIXED}",   # fixed-width character spacing on/off
 }
 
 # Inverse mapping of field module commands to codes
-fieldCommands = {v:k for k, v in fieldSpecialChars.iteritems() if v}
-fieldCommands.update({v:('\xfe' + k) for k, v in fieldControlCodes.iteritems()})
+fieldCommands = {v:k for k, v in fieldSpecialChars.items() if v}
+fieldCommands.update({v:('\xfe' + k) for k, v in fieldControlCodes.items()})
 
 # Characters which must be escaped when decoding
-escapeChars = u"\\{}"
+escapeChars = "\\{}"
 
 
 # Decode FF7 field text string to unicode string.
@@ -215,7 +215,7 @@ def decodeField(data, japanese = False):
         numNormalChars = '\xe0'
 
     dataSize = len(data)
-    text = u""
+    text = ""
 
     i = 0
     while i < dataSize:
@@ -233,7 +233,7 @@ def decodeField(data, japanese = False):
             t = charset[ord(c)]
 
             if t in escapeChars:
-                text += u"\\"
+                text += "\\"
 
             text += t
 
@@ -241,7 +241,7 @@ def decodeField(data, japanese = False):
 
             # Kanji
             if i >= dataSize:
-                raise IndexError, "Spurious kanji code %02x at end of string %r" % (ord(c), data)
+                raise IndexError("Spurious kanji code %02x at end of string %r" % (ord(c), data))
 
             k = data[i]
             i += 1
@@ -252,7 +252,7 @@ def decodeField(data, japanese = False):
 
             # Field module control code or kanji
             if i >= dataSize:
-                raise IndexError, "Spurious control code %02x at end of string %r" % (ord(c), data)
+                raise IndexError("Spurious control code %02x at end of string %r" % (ord(c), data))
 
             k = data[i]
             i += 1
@@ -265,29 +265,29 @@ def decodeField(data, japanese = False):
 
                 # WAIT <arg> command
                 if i >= dataSize - 1:
-                    raise IndexError, "Spurious WAIT command at end of string %r" % data
+                    raise IndexError("Spurious WAIT command at end of string %r" % data)
 
                 arg = struct.unpack_from("<H", data, i)
                 i += 2
 
-                text += u"{WAIT %d}" % arg
+                text += "{WAIT %d}" % arg
 
             elif k == '\xe2':
 
                 # STR <offset> <length> command
                 if i >= dataSize - 3:
-                    raise IndexError, "Spurious STR command at end of string %r" % data
+                    raise IndexError("Spurious STR command at end of string %r" % data)
 
                 offset, length = struct.unpack_from("<HH", data, i)
                 i += 4
 
-                text += u"{STR %04x %04x}" % (offset, length)
+                text += "{STR %04x %04x}" % (offset, length)
 
             else:
 
                 # Other control code
                 if not k in fieldControlCodes:
-                    raise IndexError, "Illegal control code %02x in field string %r" % (ord(k), data)
+                    raise IndexError("Illegal control code %02x in field string %r" % (ord(k), data))
 
                 text += fieldControlCodes[k]
                 
@@ -297,7 +297,7 @@ def decodeField(data, japanese = False):
             t = fieldSpecialChars[c]
 
             if not t:
-                raise IndexError, "Illegal character %02x in field string %r" % (ord(c), data)
+                raise IndexError("Illegal character %02x in field string %r" % (ord(c), data))
 
             if c == '\xe8':  # newline after {NEW}
                 t += '\n'
@@ -309,13 +309,13 @@ def decodeField(data, japanese = False):
 
 # Control codes referencing kernel variables
 kernelVars = {
-    '\xea': u"CHAR",
-    '\xeb': u"ITEM",
-    '\xec': u"NUM",
-    '\xed': u"TARGET",
-    '\xee': u"ATTACK",
-    '\xef': u"ID",
-    '\xf0': u"ELEMENT",
+    '\xea': "CHAR",
+    '\xeb': "ITEM",
+    '\xec': "NUM",
+    '\xed': "TARGET",
+    '\xee': "ATTACK",
+    '\xef': "ID",
+    '\xf0': "ELEMENT",
 }
 
 
@@ -327,7 +327,7 @@ def decodeKernel(data, japanese = False):
         charset = normalChars
 
     dataSize = len(data)
-    text = u""
+    text = ""
 
     i = 0
     while i < dataSize:
@@ -345,7 +345,7 @@ def decodeKernel(data, japanese = False):
             t = charset[ord(c)]
 
             if t in escapeChars:
-                text += u"\\"
+                text += "\\"
 
             text += t
 
@@ -353,25 +353,25 @@ def decodeKernel(data, japanese = False):
 
             # Kernel variable
             if i >= dataSize - 1:
-                raise IndexError, "Spurious control code %02x at end of kernel string %r" % (ord(c), data)
+                raise IndexError("Spurious control code %02x at end of kernel string %r" % (ord(c), data))
 
-            text += u"{%s %02x %02x}" % (kernelVars[c], ord(data[i]), ord(data[i+1]))
+            text += "{%s %02x %02x}" % (kernelVars[c], ord(data[i]), ord(data[i+1]))
             i += 2
 
         elif c == '\xf8':
 
             # Text box color
             if i >= dataSize:
-                raise IndexError, "Spurious color code at end of kernel string %r" % data
+                raise IndexError("Spurious color code at end of kernel string %r" % data)
 
-            text += u"{COLOR %02x}" % ord(data[i])
+            text += "{COLOR %02x}" % ord(data[i])
             i += 1
 
         elif c >= '\xfa' and c <= '\xfe' and japanese:
 
             # Kanji
             if i >= dataSize:
-                raise IndexError, "Spurious kanji code %02x at end of kernel string %r" % (ord(c), data)
+                raise IndexError("Spurious kanji code %02x at end of kernel string %r" % (ord(c), data))
 
             k = data[i]
             i += 1
@@ -380,7 +380,7 @@ def decodeKernel(data, japanese = False):
 
         else:
 
-            raise IndexError, "Illegal control code %02x in kernel string %r" % (ord(c), data)
+            raise IndexError("Illegal control code %02x in kernel string %r" % (ord(c), data))
 
     return text
 
@@ -400,11 +400,11 @@ def encode(text, field, japanese):
         c = text[i]
         i += 1
 
-        if c == u'\\':
+        if c == '\\':
 
             # Escape sequence
             if i >= textSize:
-                raise IndexError, "Spurious '\\' at end of string '%s'" % text
+                raise IndexError("Spurious '\\' at end of string '%s'" % text)
 
             c = text[i]
             i += 1
@@ -412,14 +412,14 @@ def encode(text, field, japanese):
             if c in escapeChars:
                 data += chr(charset.index(c))
             else:
-                raise ValueError, "Unknown escape sequence '\\%s' in string '%s'" % (c, text)
+                raise ValueError("Unknown escape sequence '\\%s' in string '%s'" % (c, text))
 
-        elif c == u'{':
+        elif c == '{':
 
             # Command sequence
-            end = text.find(u'}', i)
+            end = text.find('}', i)
             if end == -1:
-                raise IndexError, "Mismatched {} in string '%s'" % text
+                raise IndexError("Mismatched {} in string '%s'" % text)
 
             command = text[i:end]
             keyword = command.split()[0]
@@ -428,26 +428,26 @@ def encode(text, field, japanese):
             if field:
 
                 # Field command
-                if keyword == u'WAIT':
+                if keyword == 'WAIT':
 
                     # WAIT <arg>
                     m = re.match(r"WAIT (\d+)", command)
                     if not m:
-                        raise ValueError, "Syntax error in command '%s' in string '%s'" % (command, text)
+                        raise ValueError("Syntax error in command '%s' in string '%s'" % (command, text))
 
                     arg = int(m.group(1))
                     if arg > 0xffff:
-                        raise ValueError, "Argument of WAIT command greater than 65535 in string '%s'" % text
+                        raise ValueError("Argument of WAIT command greater than 65535 in string '%s'" % text)
 
                     data += '\xfe\xdd'
                     data += struct.pack("<H", arg)
 
-                elif keyword == u'STR':
+                elif keyword == 'STR':
 
                     # STR <offset> <length>
                     m = re.match(r"STR ([a-fA-F0-9]{4}) ([a-fA-F0-9]{4})", command)
                     if not m:
-                        raise ValueError, "Syntax error in command '%s' in string '%s'" % (command, text)
+                        raise ValueError("Syntax error in command '%s' in string '%s'" % (command, text))
 
                     offset = int(m.group(1), 16)
                     length = int(m.group(2), 16)
@@ -464,21 +464,21 @@ def encode(text, field, japanese):
 
                         # Strip extra newline after NEW command
                         if command == "NEW":
-                            if (i < textSize) and (text[i] == u'\n'):
+                            if (i < textSize) and (text[i] == '\n'):
                                 i += 1
 
                     except KeyError:
-                        raise ValueError, "Unknown command '%s' in string '%s'" % (command, text)
+                        raise ValueError("Unknown command '%s' in string '%s'" % (command, text))
 
             else:
 
                 # Kernel command
-                if keyword == u'COLOR':
+                if keyword == 'COLOR':
 
                     # Text box color
                     m = re.match(r"COLOR ([a-fA-F0-9]{2})", command)
                     if not m:
-                        raise ValueError, "Syntax error in command '%s' in string '%s'" % (command, text)
+                        raise ValueError("Syntax error in command '%s' in string '%s'" % (command, text))
 
                     data += '\xf8'
                     data += chr(int(m.group(1), 16))
@@ -487,11 +487,11 @@ def encode(text, field, japanese):
 
                     # Kernel variable reference
                     found = False
-                    for (code, checkKeyword,) in kernelVars.iteritems():
+                    for (code, checkKeyword,) in kernelVars.items():
                         if keyword == checkKeyword:
                             m = re.match(r"%s ([a-fA-F0-9]{2}) ([a-fA-F0-9]{2})" % keyword, command)
                             if not m:
-                                raise ValueError, "Syntax error in command '%s' in string '%s'" % (command, text)
+                                raise ValueError("Syntax error in command '%s' in string '%s'" % (command, text))
 
                             data += code
                             data += chr(int(m.group(1), 16))
@@ -501,28 +501,28 @@ def encode(text, field, japanese):
                             break
 
                     if not found:
-                        raise ValueError, "Unknown command '%s' in string '%s'" % (command, text)
+                        raise ValueError("Unknown command '%s' in string '%s'" % (command, text))
 
         else:
 
             # Handle special field characters
             if field:
-                if c == u'\t':
+                if c == '\t':
                     data += '\xe1'
                     continue
-                elif c == u'\n':
+                elif c == '\n':
                     data += '\xe7'
                     continue
-                elif c == u'〇':
+                elif c == '〇':
                     data += '\xf6'
                     continue
-                elif c == u'△':
+                elif c == '△':
                     data += '\xf7'
                     continue
-                elif c == u'☐':
+                elif c == '☐':
                     data += '\xf8'
                     continue
-                elif c == u'✕':
+                elif c == '✕':
                     data += '\xf9'
                     continue
 # TODO: Disabled for now since these shortcuts don't work in map names and
@@ -544,7 +544,7 @@ def encode(text, field, japanese):
             try:
                 data += chr(charset.index(c))
             except ValueError:
-                raise ValueError, "Unencodable character '%s' in string '%s'" % (c, text)
+                raise ValueError("Unencodable character '%s' in string '%s'" % (c, text))
 
     # Terminate string
     return data + '\xff'

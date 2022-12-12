@@ -12,28 +12,28 @@ import sys
 import struct
 import re
 
-import ff7text
+from . import ff7text
 
 
 # Tutorial script opcodes
 opcodes = {
     # '\x00' - {WAIT <arg>}
-    '\x02': u"{UP}",
-    '\x03': u"{DOWN}",
-    '\x04': u"{LEFT}",
-    '\x05': u"{RIGHT}",
-    '\x06': u"{MENU}",
-    '\x07': u"{CANCEL}",
-    '\x09': u"{OK}",
-    '\x0a': u"{PREV}",
-    '\x0c': u"{NEXT}",
+    '\x02': "{UP}",
+    '\x03': "{DOWN}",
+    '\x04': "{LEFT}",
+    '\x05': "{RIGHT}",
+    '\x06': "{MENU}",
+    '\x07': "{CANCEL}",
+    '\x09': "{OK}",
+    '\x0a': "{PREV}",
+    '\x0c': "{NEXT}",
     # '\x10' - text
     # '\x11' - end of script
     # '\x12' - {WINDOW <x> <y>}
 }
 
 # Inverse mapping of tutorial commands to opcodes
-commands = {v:k for k, v in opcodes.iteritems() if v}
+commands = {v:k for k, v in opcodes.items() if v}
 
 
 # Tutorial script
@@ -67,12 +67,12 @@ class Script:
 
                 # WAIT <arg>
                 if i >= dataSize - 1:
-                    raise IndexError, "Spurious WAIT command in tutorial data"
+                    raise IndexError("Spurious WAIT command in tutorial data")
 
                 arg = struct.unpack_from("<H", data, i)
                 i += 2
 
-                script.append(u"{WAIT %d}" % arg)
+                script.append("{WAIT %d}" % arg)
 
             elif c == '\x10':
 
@@ -85,12 +85,12 @@ class Script:
 
                 # WINDOW <x> <y>
                 if i >= dataSize - 3:
-                    raise IndexError, "Spurious WINDOW command in tutorial data"
+                    raise IndexError("Spurious WINDOW command in tutorial data")
 
                 x, y = struct.unpack_from("<HH", data, i)
                 i += 4
 
-                script.append(u"{WINDOW %d %d}" % (x, y))
+                script.append("{WINDOW %d %d}" % (x, y))
 
             else:
 
@@ -98,7 +98,7 @@ class Script:
                 if c in opcodes:
                     script.append(opcodes[c])
                 else:
-                    raise IndexError, "Illegal opcode %02x in tutorial data" % ord(c)
+                    raise IndexError("Illegal opcode %02x in tutorial data" % ord(c))
 
         return script
 
@@ -112,11 +112,11 @@ class Script:
                 # WAIT <arg>
                 m = re.match(r"{WAIT (\d+)}", line)
                 if not m:
-                    raise ValueError, "Syntax error in command '%s' in tutorial script" % line
+                    raise ValueError("Syntax error in command '%s' in tutorial script" % line)
 
                 arg = int(m.group(1))
                 if arg > 0xffff:
-                    raise ValueError, "Argument of WAIT command greater than 65535 in tutorial script"
+                    raise ValueError("Argument of WAIT command greater than 65535 in tutorial script")
 
                 data += '\x00'
                 data += struct.pack("<H", arg)
@@ -126,14 +126,14 @@ class Script:
                 # WINDOW <x> <y>
                 m = re.match(r"{WINDOW (\d+) (\d+)}", line)
                 if not m:
-                    raise ValueError, "Syntax error in command '%s' in tutorial script" % line
+                    raise ValueError("Syntax error in command '%s' in tutorial script" % line)
 
                 x = int(m.group(1))
                 y = int(m.group(2))
                 if x > 0xffff:
-                    raise ValueError, "First argument of WINDOW command greater than 65535 in tutorial script"
+                    raise ValueError("First argument of WINDOW command greater than 65535 in tutorial script")
                 if y > 0xffff:
-                    raise ValueError, "Second argument of WINDOW command greater than 65535 in tutorial script"
+                    raise ValueError("Second argument of WINDOW command greater than 65535 in tutorial script")
 
                 data += '\x12'
                 data += struct.pack("<HH", x, y)
@@ -145,7 +145,7 @@ class Script:
                     code = commands[line]
                     data += code
                 except KeyError:
-                    raise ValueError, "Unknown command '%s' in tutorial script" % line
+                    raise ValueError("Unknown command '%s' in tutorial script" % line)
 
             else:
 

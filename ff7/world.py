@@ -10,7 +10,7 @@
 
 import struct
 
-import lzss
+from . import lzss
 
 
 def _enum(**enums):
@@ -75,7 +75,7 @@ class WorldMap:
 
             script.append(op)
 
-            for i in xrange(instructionSize(op) - 1):
+            for i in range(instructionSize(op) - 1):
                 script.append(struct.unpack_from("<H", self.data, offset)[0])
                 offset += 2
 

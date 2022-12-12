@@ -46,13 +46,13 @@ class Image:
             self.blockOffset = 0
 
         else:
-            raise EnvironmentError, "'%s' does not appear to be a disc image file (invalid file size)" % imageFileName
+            raise EnvironmentError("'%s' does not appear to be a disc image file (invalid file size)" % imageFileName)
 
         # Read and check the PVD
         pvd = self.readExtent(16, 2048)
 
         if pvd[:7] != "\x01CD001\x01":
-            raise EnvironmentError, "'%s' is not a disc image file (volume descriptor not found)" % imageFileName
+            raise EnvironmentError("'%s' is not a disc image file (volume descriptor not found)" % imageFileName)
 
         # Find the root directory
         self.rootDirSector, self.rootDirSize = struct.unpack_from("<L4xL", pvd, 0x9e)
@@ -72,7 +72,7 @@ class Image:
             sectorData = self.file.read(2048)
 
             if len(sectorData) < 2048:
-                raise ValueError, "Error reading sector %d of disc image" % sector
+                raise ValueError("Error reading sector %d of disc image" % sector)
 
             sector += 1
 
@@ -131,13 +131,13 @@ class Image:
                     if (len(path) > 1) and (recType & 0x02) == 0:
 
                         # Expected a directory but found a file
-                        raise KeyError, "'%s' not found in disc image" % pathName
+                        raise KeyError("'%s' not found in disc image" % pathName)
 
                 # Move to next record
                 offset += recLen
 
             if firstSector is None:
-                raise KeyError, "'%s' not found in disc image" % pathName
+                raise KeyError("'%s' not found in disc image" % pathName)
 
             if len(path) == 1:
 
