@@ -75,7 +75,7 @@ def readTimImage(f):
         clut = f.read(numEntries * 2)
 
         if pMode == 0:
-            clut += '\0' * 32 * 16  # extend to 256 entries
+            clut += b'\0' * 32 * 16  # extend to 256 entries
             clut = clut[:512]
 
         clut = convertABGR(clut)
@@ -102,13 +102,13 @@ def readTimImage(f):
         # Expand 4-bit pixel data to 8-bit
         output = bytearray()
         for x in pixelData:
-            pix0 = ord(x) & 0x0f
-            pix1 = ord(x) >> 4
+            pix0 = x & 0x0f
+            pix1 = x >> 4
 
             output.append(pix0)
             output.append(pix1)
 
-        image = Image.frombytes("P", (width, height), str(output), "raw", "P", 0, 1)
+        image = Image.frombytes("P", (width, height), bytes(output), "raw", "P", 0, 1)
         image.palette = palette
 
     elif pMode == 1:
@@ -183,7 +183,7 @@ except IOError as e:
     sys.exit(1)
 
 try:
-    image = readTimImage(f)
+    mage = readTimImage(f)
 except Exception as e:
     print("Error reading TIM image '%s': %s" % (inputFileName, str(e)), file=sys.stderr)
     sys.exit(1)
