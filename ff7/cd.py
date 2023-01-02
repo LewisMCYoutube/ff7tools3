@@ -33,7 +33,7 @@ class Image:
         self.file.seek(0, os.SEEK_END)
         fileSize = self.file.tell()
 
-        if header == "\x00\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x00" and fileSize % 2352 == 0:
+        if header == b"\x00\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x00" and fileSize % 2352 == 0:
 
             # Sync header present, assume a raw image
             self.blockSize = 2352
@@ -51,7 +51,7 @@ class Image:
         # Read and check the PVD
         pvd = self.readExtent(16, 2048)
 
-        if pvd[:7] != "\x01CD001\x01":
+        if pvd[:7] != b"\x01CD001\x01":
             raise EnvironmentError("'%s' is not a disc image file (volume descriptor not found)" % imageFileName)
 
         # Find the root directory
@@ -64,7 +64,7 @@ class Image:
     # Read contiguous data from the image given the start sector and number
     # of bytes to read. Returns the data as a byte string.
     def readExtent(self, firstSector, numBytes):
-        data = ""
+        data = b""
         sector = firstSector
 
         while numBytes > 0:
@@ -111,17 +111,17 @@ class Image:
             while (firstSector is None) and (offset < dirSize):
 
                 # Get record length and type
-                recLen = ord(dir[offset])
+                recLen = dir[offset]
                 if recLen == 0:
                     offset += 1  # empty padding at end of sector
                     continue
 
-                recType = ord(dir[offset + 0x19])
+                recType = dir[offset + 0x19]
 
                 # Compare entry name
-                nameLen = ord(dir[offset + 0x20])
+                nameLen = dir[offset + 0x20]
                 name = dir[offset + 0x21:offset + 0x21 + nameLen]
-                name = name.split(';')[0]  # strip file version numbers
+                name = name.split(b';')[0].decode("ascii")  # strip file version numbers
 
                 if name == path[0]:
 
