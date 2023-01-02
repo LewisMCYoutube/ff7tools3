@@ -194,11 +194,11 @@ if __name__ == "__main__":
         print("Error opening file '%s': %s" % (inputFileName, e.strerror), file=sys.stderr)
         sys.exit(1)
 
-    #try:
+    try:
     image = readTimImage(f)
-    #except Exception as e:
-    #    print("Error reading TIM image '%s': %s" % (inputFileName, str(e)), file=sys.stderr)
-    #    sys.exit(1)
+    except Exception as e:
+        print("Error reading TIM image '%s': %s" % (inputFileName, str(e)), file=sys.stderr)
+        sys.exit(1)
 
     # Write output image
     image.save(outputFileName, "PNG")
